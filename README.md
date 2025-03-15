@@ -1,5 +1,12 @@
 # React + Vite
 
+## json-server
+
+The app is using json-server in order to mimic a backend.
+To start the json-server:
+
+### `json-server -w data/db.json -p 3500`
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
