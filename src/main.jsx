@@ -4,11 +4,20 @@ import "./index.css";
 import App from "./App.jsx";
 import { store } from "./app/store.js";
 import { Provider } from "react-redux";
+import { extendedApiSlice } from "./features/tasks/tasksSlice.js";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+// to get the tasks immediately after app loads
+store.dispatch(extendedApiSlice.endpoints.getTasks.initiate());
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
-      <App />
+      <Router>
+        <Routes>
+          <Route path="/*" element={<App />} />
+        </Routes>
+      </Router>
     </Provider>
   </StrictMode>
 );

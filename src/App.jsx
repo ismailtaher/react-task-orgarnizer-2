@@ -1,35 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import TasksBoard from "./features/tasks/TasksBoard";
+import Layout from "./components/Layout";
+import AddTaskForm from "./features/tasks/AddTaskForm";
+import SingleTaskPage from "./features/tasks/SingleTaskPage";
+import EditTaskForm from "./features/tasks/EditTaskForm";
+import { Routes, Route, Navigate } from "react-router-dom";
+
+const HEX_CODE_REGEX = /^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/;
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const taskPriority = [
+    { name: "Low", id: "1" },
+    { name: "Medium", id: "2" },
+    { name: "High", id: "3" },
+    { name: "Extreme", id: "4" },
+  ];
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<TasksBoard />} />
+
+        <Route path="task">
+          <Route
+            index
+            element={
+              <AddTaskForm
+                taskPriority={taskPriority}
+                HEX_CODE_REGEX={HEX_CODE_REGEX}
+              />
+            }
+          />
+          <Route
+            path=":taskId"
+            element={
+              <SingleTaskPage
+                taskPriority={taskPriority}
+                HEX_CODE_REGEX={HEX_CODE_REGEX}
+              />
+            }
+          />
+          <Route
+            path="edit/:taskId"
+            element={
+              <EditTaskForm
+                taskPriority={taskPriority}
+                HEX_CODE_REGEX={HEX_CODE_REGEX}
+              />
+            }
+          />
+        </Route>
+      </Route>
+    </Routes>
+  );
 }
 
-export default App
+export default App;
