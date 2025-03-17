@@ -12,8 +12,15 @@ code {
     monospace;
 }
 
+/* .layout {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+} */
+
 header {
-  z-index: 1;
+  /* z-index: 1; */
   padding-left: 1rem;
   display: flex;
   justify-content: space-between;
@@ -22,17 +29,18 @@ header {
   color: black;
   position: sticky;
   top: 0;
+  height: 5rem;
 }
 
 .App {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 1rem 0 1rem;
-  height: 80vh;
+  padding: 1rem;
+  /* height: 80vh; */
 
-  @media only screen and (min-width: 640) {
-    padding: 0 2rem 0 2rem;
+  @media only screen and (min-width: 640px) {
+    padding: 2rem;
   }
 }
 
@@ -254,3 +262,8 @@ textarea {
   color: white;
   background-color: #888;
 }
+
+/* .edit-task {
+  margin-top: 5rem;
+}
+ */

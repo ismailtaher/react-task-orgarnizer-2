@@ -139,7 +139,7 @@ const EditTaskForm = ({ HEX_CODE_REGEX, taskPriority }) => {
   };
 
   return (
-    <section>
+    <section className="edit-task">
       <h2>Edit Task</h2>
       <form>
         <label htmlFor="taskTitle">Title:</label>
